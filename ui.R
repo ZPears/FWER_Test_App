@@ -22,8 +22,6 @@ dashboardPage(skin="green",
   ),
   
   dashboardBody(
-    
-    includeCSS("www/custom.css"),
   
     h2(strong("Step 1:"), "Calculate your A/B tests' p-values!"),
     
@@ -39,13 +37,13 @@ dashboardPage(skin="green",
         numericInput("noConv2", "Number of Conversions (Variation B)", 0)
         ),
         br(),
-        submitButton(text = "Calculate p-value!", icon = NULL),
+        submitButton(text = "Calculate p-value!", icon = icon("gear")),
         width = 9
       ),
       box(
         title = "Your tests' p-values:",
-        
-        width= 3, height = 255
+        textOutput("OutputPVals"),
+        width= 3, height = 285
       )
     ),
     
@@ -54,7 +52,7 @@ dashboardPage(skin="green",
     fluidRow(
 
       box(
-        textInput("pVals", "P Values:"),
+        textInput("UserPVals", "P Values:"),
         width = 12
       )
       
@@ -68,8 +66,10 @@ dashboardPage(skin="green",
         textInput("result", "The statistically significant test results are:"),
         width = 12
       )
-      
-    )
+    
+    ),
+    
+    includeCSS("www/custom.css")
     
   )
   
