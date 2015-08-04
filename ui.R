@@ -26,6 +26,7 @@ dashboardPage(skin="green",
     h2(strong("Step 1:"), "Calculate your A/B tests' p-values!"),
     
     fluidRow(
+      
       box(
         title = "A/B Test p-value calculator",
         box(
@@ -37,7 +38,8 @@ dashboardPage(skin="green",
         numericInput("noConv2", "Number of Conversions (Variation B)", 0)
         ),
         br(),
-        submitButton(text = "Calculate p-value!", icon = icon("gear")),
+        actionButton(inputId = "calcButton", label = "Calculate p-value!",
+                     icon = icon("gear"), color = "blue"),
         width = 9
       ),
       box(

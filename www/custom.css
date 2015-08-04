@@ -6,7 +6,7 @@ h2 {
 	background-color: #303030;
 }
 
-.btn-primary {
+#calcButton {
 	text-align:center;
 	font-weight: bold;
 }
