@@ -6,9 +6,12 @@ dashboardPage(skin="green",
   dashboardHeader(title = "FWER Calculator"),
   
   dashboardSidebar(
+    br(),
     
     img(src="logo.png",
         width=230),
+    
+    br(), br(),
     
     h2("App settings:"),
     

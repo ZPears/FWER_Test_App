@@ -31,9 +31,11 @@ shinyServer(function(input, output) {
     data <- unlist(strsplit(input$UserPVals, ", "))
     data <- as.numeric(data)
     
-    results <- p.adjust(data, method = "bonferroni")
-    
-    paste("Test numbers ", as.character(results[1]), " are significant!", sep="")
+    if (input$errorCorrection == "Bonferroni")
+      
+      results <- p.adjust(data, method = "bonferroni")
+      
+      paste("Test numbers ", as.character(results[1]), " are significant!", sep="")
     
   })
   
