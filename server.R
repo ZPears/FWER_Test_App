@@ -2,7 +2,7 @@ shinyServer(function(input, output) {
   
   pScores <- ""
   
-  #pvalue calculator
+  # pvalue calculator
   PValsList <- eventReactive(input$calcButton, {
     
     prob1 <- input$noConv1/input$sampleSize1 ## control
@@ -25,8 +25,26 @@ shinyServer(function(input, output) {
     pScores
   })
   
+  #FWER Calculator
+  FWERcalc <- eventReactive(input$FWERbutton, {
+    
+    p.adjust(pScores, method = "bonferroni")
+    
+  })
+  
+  # reactive functions
+  confLvlInput <- reactive({
+    input$confLvlSetting
+  })
+  
+  
+  # output values
   output$OutputPVals <- renderText({
     PValsList()
+  })
+  
+  output$result <- renderText({
+    FWERcalc()
   })
   
 })

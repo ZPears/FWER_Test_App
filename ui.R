@@ -12,7 +12,7 @@ dashboardPage(skin="green",
     
     h2("App settings:"),
     
-    sliderInput("confidenceLvl", "Confidence Level:", 1, 100, 95),
+    sliderInput("confLvlSetting", "Confidence Level:", 1, 100, 95),
     
     radioButtons(
       "errorCorrection", "Error Correction Method:",
@@ -39,7 +39,7 @@ dashboardPage(skin="green",
         ),
         br(),
         actionButton(inputId = "calcButton", label = "Calculate p-value!",
-                     icon = icon("gear"), color = "blue"),
+                     icon = icon("gear")),
         width = 9
       ),
       box(
@@ -55,7 +55,9 @@ dashboardPage(skin="green",
 
       box(
         textInput("UserPVals", "P Values:"),
-        width = 12
+        width = 12,
+        actionButton(inputId = "FWERbutton", label = "Find Signficant Results!",
+                     icon = icon("gear"))
       )
       
     ),
@@ -65,7 +67,7 @@ dashboardPage(skin="green",
     fluidRow(
       
       box(
-        textInput("result", "The statistically significant test results are:"),
+        textOutput("result"),
         width = 12
       )
     
