@@ -49,12 +49,13 @@ dashboardPage(skin="green",
       )
     ),
     
-    h2(strong("Step 2:"), "Enter your tests' p-values in the box below."),
+    h2(strong("Step 2:"), "Enter your tests' p-values (separated by commas) in the box below."),
     
     fluidRow(
 
       box(
-        textInput("UserPVals", "P Values:"),
+        title = "P-Values:",
+        textInput("UserPVals", ""),
         width = 12,
         actionButton(inputId = "FWERbutton", label = "Find Signficant Results!",
                      icon = icon("gear"))
@@ -67,6 +68,7 @@ dashboardPage(skin="green",
     fluidRow(
       
       box(
+        title = "Results:",
         textOutput("result"),
         width = 12
       )

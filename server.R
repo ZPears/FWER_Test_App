@@ -18,9 +18,9 @@ shinyServer(function(input, output) {
     pScore <- round(pnorm(zScore), 3)
     
     if (pScores == "")
-      pScores <<- as.character(pScore)
+      pScores <<- as.character(1 - pScore)
     else
-      pScores <<- paste(pScores, ", ", as.character(pScore), sep="")
+      pScores <<- paste(pScores, ", ", as.character(1 - pScore), sep="")
       
     pScores
   })
@@ -28,13 +28,20 @@ shinyServer(function(input, output) {
   #FWER Calculator
   FWERcalc <- eventReactive(input$FWERbutton, {
     
-    p.adjust(pScores, method = "bonferroni")
+    data <- unlist(strsplit(input$UserPVals, ", "))
+    data <- as.numeric(data)
+    
+    results <- p.adjust(data, method = "bonferroni")
+    
+    paste("Test numbers ", as.character(results[1]), " are significant!", sep="")
     
   })
   
   # reactive functions
   confLvlInput <- reactive({
+    
     input$confLvlSetting
+    
   })
   
   
