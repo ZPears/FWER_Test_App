@@ -15,11 +15,11 @@ dashboardPage(skin="green",
     
     h2("App settings:"),
     
-    sliderInput("confLvlSetting", "Confidence Level:", 1, 100, 95),
+    sliderInput("confLvlSetting", "Confidence Level:", 90, 100, 95),
     
     radioButtons(
       "errorCorrection", "Error Correction Method:",
-      c("Bonferroni", "Benjamini Hochberg")
+      c("Bonferroni", "BH (False Discovery Rate)")
     )
     
   ),
@@ -52,7 +52,7 @@ dashboardPage(skin="green",
       )
     ),
     
-    h2(strong("Step 2:"), "Enter your tests' p-values (separated by commas) in the box below."),
+    h2(strong("Step 2:"), "Copy and paste your tests' p-values (separated by commas) in the box below."),
     
     fluidRow(
 

@@ -30,19 +30,25 @@ shinyServer(function(input, output) {
     
     data <- unlist(strsplit(input$UserPVals, ", "))
     data <- as.numeric(data)
+      
+    alpha_FWER <- alphaInput() / length(data)
+  
+    for (i in 1:length(data)) {
+      
+      if (data[i] < alpha_FWER)
+        
+        results <- paste(results + as.character(data[i]) + ", ", sep="")  
+      
+    }
     
-    if (input$errorCorrection == "Bonferroni")
-      
-      results <- p.adjust(data, method = "bonferroni")
-      
-      paste("Test numbers ", as.character(results[1]), " are significant!", sep="")
+    paste("Alpha_FWER is: ", as.character(alpha_FWER), ". Results are: ", results)
     
   })
   
   # reactive functions
-  confLvlInput <- reactive({
+  alphaInput <- reactive({
     
-    input$confLvlSetting
+    (100 - input$confLvlSetting) * 0.01
     
   })
   
