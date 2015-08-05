@@ -41,19 +41,19 @@ shinyServer(function(input, output) {
         
         if (data[i] < alpha_FWER)
           
-          results <- paste(results, data[i], ", ", sep="")  
+          results <- paste(results, i, ", ", sep="")  
         
       }
       
       paste("Your tests' familywise error rate (FWER) is ", 
             as.character(round(alpha_FWER, 4)), 
-            ". Your significant test results are: ", results, sep="")
+            ". Your significant tests are numbers ", results, sep="")
       
     } else {
       
       numbers <- 1:length(data)
       
-      frame <- cbind(numbers, data)
+      frame <- data.frame(numbers, data)
       
       frame <- frame[order(data),]
       
@@ -67,7 +67,7 @@ shinyServer(function(input, output) {
         
       }
       
-      paste("Your tests' false discover rate has been controlled. 
+      paste("Your tests' false discovery rate has been controlled. 
             Your significant test results are: ", results, sep="")
       
     }
