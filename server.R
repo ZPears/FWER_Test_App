@@ -37,11 +37,11 @@ shinyServer(function(input, output) {
       
       if (data[i] < alpha_FWER)
         
-        results <- paste(results + as.character(data[i]) + ", ", sep="")  
+        results <- paste(results, data[i], ", ", sep="")  
       
     }
     
-    paste("Alpha_FWER is: ", as.character(alpha_FWER), ". Results are: ", results)
+    paste("Alpha_FWER is: ", as.character(alpha_FWER), ". Results are: ", results, sep="")
     
   })
   
