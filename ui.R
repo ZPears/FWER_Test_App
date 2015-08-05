@@ -19,7 +19,7 @@ dashboardPage(skin="green",
     
     radioButtons(
       "errorCorrection", "Error Correction Method:",
-      c("Bonferroni", "BH (False Discovery Rate)")
+      c("BH (False Discovery Rate)", "Bonferroni")
     )
     
   ),
@@ -71,7 +71,7 @@ dashboardPage(skin="green",
     fluidRow(
       
       box(
-        title = "Results:",
+        title = "Test Results:",
         textOutput("result"),
         width = 12
       )

@@ -28,20 +28,49 @@ shinyServer(function(input, output) {
   #FWER Calculator
   FWERcalc <- eventReactive(input$FWERbutton, {
     
+    results <- ""
+    
     data <- unlist(strsplit(input$UserPVals, ", "))
     data <- as.numeric(data)
+    
+    if (input$errorCorrection == "Bonferroni") {
       
-    alpha_FWER <- alphaInput() / length(data)
-  
-    for (i in 1:length(data)) {
+      alpha_FWER <- alphaInput() / length(data)
       
-      if (data[i] < alpha_FWER)
+      for (i in 1:length(data)) {
         
-        results <- paste(results, data[i], ", ", sep="")  
+        if (data[i] < alpha_FWER)
+          
+          results <- paste(results, data[i], ", ", sep="")  
+        
+      }
+      
+      paste("Your tests' familywise error rate (FWER) is ", 
+            as.character(round(alpha_FWER, 4)), 
+            ". Your significant test results are: ", results, sep="")
+      
+    } else {
+      
+      numbers <- 1:length(data)
+      
+      frame <- cbind(numbers, data)
+      
+      frame <- frame[order(data),]
+      
+      for (i in 1:length(frame$data)){
+        
+        if (frame$data[i] <= (alphaInput() * (i/length(data)))) {
+          
+          results <- paste(results, frame$numbers[i], ", ", sep="")
+            
+        }
+        
+      }
+      
+      paste("Your tests' false discover rate has been controlled. 
+            Your significant test results are: ", results, sep="")
       
     }
-    
-    paste("Alpha_FWER is: ", as.character(alpha_FWER), ". Results are: ", results, sep="")
     
   })
   
@@ -60,6 +89,10 @@ shinyServer(function(input, output) {
   
   output$result <- renderText({
     FWERcalc()
+  })
+  
+  output$alpha_FWER <- renderText({
+    as.character(round(alpha_FWER, 4))
   })
   
 })
