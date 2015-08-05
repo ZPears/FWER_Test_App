@@ -28,6 +28,10 @@ dashboardPage(skin="green",
   
     h2(strong("Step 1:"), "Calculate your A/B tests' p-values!"),
     
+    br(),
+    
+    p("If you already know your tests' p-values, you can skip to step 2."),
+    
     fluidRow(
       
       box(
@@ -46,13 +50,19 @@ dashboardPage(skin="green",
         width = 9
       ),
       box(
-        title = "Your tests' p-values:",
+        title = "Your tests' p-values will appear here:",
         textOutput("OutputPVals"),
         width= 3, height = 285
       )
     ),
     
-    h2(strong("Step 2:"), "Copy and paste your tests' p-values (separated by commas) in the box below."),
+    h2(strong("Step 2:"), "Copy and paste your tests' p-values (separated by commas) 
+       in the box below."),
+    
+    br(),
+    
+    p("If you want, you can edit your desired confidence level and error correction method 
+       from the menu on the right."),
     
     fluidRow(
 
