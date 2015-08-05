@@ -56,8 +56,8 @@ dashboardPage(skin="green",
       )
     ),
     
-    h2(strong("Step 2:"), "Copy and paste your tests' p-values (separated by commas) 
-       in the box below."),
+    h2(strong("Step 2:"), 'Copy and paste your test p-values (separated by commas) 
+       in the box below.'),
     
     br(),
     
@@ -70,7 +70,7 @@ dashboardPage(skin="green",
         title = "P-Values:",
         textInput("UserPVals", ""),
         width = 12,
-        actionButton(inputId = "FWERbutton", label = "Find Signficant Results!",
+        actionButton(inputId = "FWERbutton", label = "Calculate Results!",
                      icon = icon("gear"))
       )
       
@@ -78,8 +78,10 @@ dashboardPage(skin="green",
     
     h2(strong("Step 3:"), "Use your results to make smarter marketing decisions!"),
     
+    br(),
+    
     fluidRow(
-      
+    
       box(
         title = "Test Results:",
         textOutput("result"),

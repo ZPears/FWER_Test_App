@@ -47,7 +47,7 @@ shinyServer(function(input, output) {
       
       paste("Your tests' familywise error rate (FWER) is ", 
             as.character(round(alpha_FWER, 4)), 
-            ". Your significant tests are numbers ", results, sep="")
+            ". Your significant tests are numbers: \n", results, sep="")
       
     } else {
       

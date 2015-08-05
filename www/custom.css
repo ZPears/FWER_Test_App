@@ -1,4 +1,4 @@
-h2, h3, p  {
+h2, h3, p {
 	text-align: center;
 }
 
@@ -9,5 +9,11 @@ h2, h3, p  {
 #calcButton, #FWERbutton {
 	text-align:center;
 	font-weight: bold;
-	background-color: #428BCA;
+	background-color: #D1EEEE;
+}
+
+#result  {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.4em;
 }
