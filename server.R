@@ -41,13 +41,10 @@ shinyServer(function(input, output) {
         
         if (data[i] < alpha_FWER)
           
-          results <- paste(results, i, ", ", sep="")  
+          results <- paste(results, ", ", i, sep="")
         
       }
       
-      paste("Your tests' familywise error rate (FWER) is ", 
-            as.character(round(alpha_FWER, 4)), 
-            ". Your significant tests are numbers: \n", results, sep="")
       
     } else {
       
@@ -61,14 +58,33 @@ shinyServer(function(input, output) {
         
         if (frame$data[i] <= (alphaInput() * (i/length(data)))) {
           
-          results <- paste(results, frame$numbers[i], ", ", sep="")
+          results <- paste(results, ", ", frame$numbers[i], sep="")
             
         }
         
       }
       
-      paste("Your tests' false discovery rate has been controlled. 
-            Your significant test results are: ", results, sep="")
+    }
+    
+    #display the value
+    
+    if (results == "") {
+      
+     return("No results were found signficant. Sorry!")
+    
+    } else if (nchar(results) == 3) {
+      
+      paste("Only P-Value number ", substr(results, 3, 3), " is significant.")
+        
+    } else {
+      
+      paste(
+        "P-Values ",
+        substr(results, 3, nchar(results)-3),
+        " and ",
+        substr(results, (nchar(results)), nchar(results)),
+        " are significant."
+      )
       
     }
     

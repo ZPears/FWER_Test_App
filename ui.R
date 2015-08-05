@@ -26,6 +26,11 @@ dashboardPage(skin="green",
   
   dashboardBody(
   
+    div(id = "header",
+      h3("If you do a lot of A/B testing, then you need to take your tests' familywise error rate (FWER) into account before making marketing decisions."),
+      h3("Greenough's ", strong("FWER Calculcator"), "can help!")
+    ),
+    
     h2(strong("Step 1:"), "Calculate your A/B tests' p-values!"),
     
     br(),
@@ -57,7 +62,7 @@ dashboardPage(skin="green",
     ),
     
     h2(strong("Step 2:"), 'Copy and paste your test p-values (separated by commas) 
-       in the box below.'),
+       in the box below!'),
     
     br(),
     
@@ -83,7 +88,7 @@ dashboardPage(skin="green",
     fluidRow(
     
       box(
-        title = "Test Results:",
+        title = "The Statistically Significant Test P-Values Are:",
         textOutput("result"),
         width = 12
       )

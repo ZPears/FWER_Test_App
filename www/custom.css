@@ -17,3 +17,8 @@ h2, h3, p {
 	font-weight: bold;
 	font-size: 1.4em;
 }
+
+#header {
+	border-bottom: 1px solid black;
+	padding-bottom: 2%;
+}
