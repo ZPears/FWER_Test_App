@@ -40,7 +40,7 @@ dashboardPage(skin="green",
     fluidRow(
       
       box(
-        title = "A/B Test p-value calculator",
+        title = "A/B Test p-value calculator:",
         box(
           numericInput("sampleSize1", "Sample Size (Variation A)", 0),
           numericInput("noConv1", "Number of Conversions (Variation A)", 0)
@@ -50,12 +50,12 @@ dashboardPage(skin="green",
         numericInput("noConv2", "Number of Conversions (Variation B)", 0)
         ),
         br(),
-        actionButton(inputId = "calcButton", label = "Calculate p-value!",
+        actionButton(inputId = "calcButton", label = "Calculate P-Value!",
                      icon = icon("gear")),
         width = 9
       ),
       box(
-        title = "Your tests' p-values will appear here:",
+        title = "Your tests' p-values will appear here (separated by commas):",
         textOutput("OutputPVals"),
         width= 3, height = 285
       )
@@ -67,13 +67,13 @@ dashboardPage(skin="green",
     br(),
     
     p("If you want, you can edit your desired confidence level and error correction method 
-       from the menu on the right."),
+       from the menu on the left."),
     
     fluidRow(
 
       box(
         title = "P-Values:",
-        textInput("UserPVals", ""),
+        textInput("UserPVals", label = NULL, value = "For Example: 0.01, 0.02, 0.03, 0.04"),
         width = 12,
         actionButton(inputId = "FWERbutton", label = "Calculate Results!",
                      icon = icon("gear"))

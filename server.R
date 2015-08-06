@@ -1,5 +1,7 @@
 shinyServer(function(input, output) {
   
+  source("helpers.R")
+  
   pScores <- ""
   
   # pvalue calculator
@@ -28,65 +30,10 @@ shinyServer(function(input, output) {
   #FWER Calculator
   FWERcalc <- eventReactive(input$FWERbutton, {
     
-    results <- ""
-    
     data <- unlist(strsplit(input$UserPVals, ", "))
     data <- as.numeric(data)
     
-    if (input$errorCorrection == "Bonferroni") {
-      
-      alpha_FWER <- alphaInput() / length(data)
-      
-      for (i in 1:length(data)) {
-        
-        if (data[i] < alpha_FWER)
-          
-          results <- paste(results, ", ", i, sep="")
-        
-      }
-      
-      
-    } else {
-      
-      numbers <- 1:length(data)
-      
-      frame <- data.frame(numbers, data)
-      
-      frame <- frame[order(data),]
-      
-      for (i in 1:length(frame$data)){
-        
-        if (frame$data[i] <= (alphaInput() * (i/length(data)))) {
-          
-          results <- paste(results, ", ", frame$numbers[i], sep="")
-            
-        }
-        
-      }
-      
-    }
-    
-    #display the value
-    
-    if (results == "") {
-      
-     return("No results were found signficant. Sorry!")
-    
-    } else if (nchar(results) == 3) {
-      
-      paste("Only P-Value number ", substr(results, 3, 3), " is significant.")
-        
-    } else {
-      
-      paste(
-        "P-Values ",
-        substr(results, 3, nchar(results)-3),
-        " and ",
-        substr(results, (nchar(results)), nchar(results)),
-        " are significant."
-      )
-      
-    }
+    finalCalc(data, input$errorCorrection, alphaInput())
     
   })
   
