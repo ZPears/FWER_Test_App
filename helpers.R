@@ -58,5 +58,7 @@ finalCalc <- function(data, errorCorrection, alpha) {
 }
 
 inputError <- function() {
-  "Sorry, your results aren't formatted correctly. Please enter them in decimal format (for example: 0.01) separated by commas."
+  "Sorry, your results aren't formatted correctly. 
+  Please enter them in decimal format separated by commas 
+  (for example: 0.01, 0.02, 0.03)."
 }
