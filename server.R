@@ -33,7 +33,7 @@ shinyServer(function(input, output) {
     data <- unlist(strsplit(input$UserPVals, ", "))
     data <- as.numeric(data)
     
-    finalCalc(data, input$errorCorrection, alphaInput())
+    tryCatch(finalCalc(data, input$errorCorrection, alphaInput()), error = function(e) inputError())
     
   })
   
